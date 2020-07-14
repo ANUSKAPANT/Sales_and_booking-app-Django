@@ -1,0 +1,29 @@
+ {% extends 'template/main.html'%} 
+{% block content %}
+
+<br><br>
+<div class="row">
+	<div class="col-md-5">
+		<div class="card card-body">
+			<h5>Book a service:</h5>
+			<hr>
+
+
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }} 
+				<input type="submit" name="submit">
+				
+			</form>
+			<br>
+			<div class="col-md-5 text-primary">
+				<p id="messages">{{message}}</p>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+            

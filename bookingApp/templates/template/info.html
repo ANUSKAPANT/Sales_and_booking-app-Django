@@ -1,0 +1,65 @@
+{% extends 'template/main.html'%} 
+{% block content %}
+{%  include 'template/status.html' %}
+
+<br>
+<br>
+
+<div class="row">
+	<div class="col-md-7">
+		<h5>Booking Details</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					
+					<th>Service</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Buyer</th>
+
+				</tr>
+
+				{% for booking in bookings  %}
+				<tr>
+					
+					<td>{{booking.service}}</td>
+					<td>{{booking.date}}</td>
+
+					<td>{{booking.time}}</td>
+					<td>{{booking.buyer}}</td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-5">
+		<h5>Service Details</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					<th>Service</th>
+					<th>Seller</th>
+				</tr>
+
+
+				{% for service in services  %}
+				<tr>
+					<td>{{service.name}}</td>
+					<td>{{service.seller}}</td>
+				</tr>
+				{% endfor %}
+				
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

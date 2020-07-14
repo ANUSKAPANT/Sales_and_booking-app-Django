@@ -1,0 +1,38 @@
+
+{% extends 'template/main.html'%} 
+{% block content %}
+
+
+<br>
+<div class="row">
+	<div class="col-md-5">
+		
+		<div class="card card-body">	
+			<a class="btn btn-info  btn-sm " href="{% url 'create-service' %}">Create service</a>	
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	{% for service in services%}
+	<div class="col-md-4">
+		<hr>
+		<div class="card card-body">
+			
+				<div class="card card-body">
+					<h1>{{service.name}}</h1>
+					<h4>{{service.description}}</h4>
+					<h4>{{service.price}}$/week</h4>
+					<p><a class="btn  btn-info  btn-sm" href="{% url 'booking' service.id %}">Book</a></p>
+				</div>
+				
+			
+		</div>
+	</div>
+	{% endfor %}
+	
+</div>
+
+{% endblock %}
+

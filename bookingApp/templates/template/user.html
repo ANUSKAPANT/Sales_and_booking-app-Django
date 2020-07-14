@@ -1,0 +1,104 @@
+{%  extends 'template/main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'services' %}"> &#8592; Back to HomePage</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" src= "{{img}}"alt="my image">
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form.as_p}}
+		
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
+
+<br>
+<div class="row">
+	<div class="col-md-7">
+		<h5>Booked services</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					
+					<th>Service</th>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Update</th>
+					<th>Delete</th>
+					
+				</tr>
+
+				{% for booking in bookings%}
+				<tr>
+					
+					<td>{{booking.service}}</td>
+					<td>{{booking.date}}</td>
+					<td>{{booking.time}}</td>
+					<td><a class="btn btn-info btn-sm" href="{% url 'update-booking' booking.id %}">Update</a></td>
+					<td><a class="btn btn-danger btn-sm" href="{% url 'delete-booking' booking.id %}">Delete</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-3">
+		<h5>Service Provided</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					<th></th>
+					<th></th>
+					<th>Service</th>
+					
+				</tr>
+
+
+				{% for service in services  %}
+				<tr>
+					<td></td>					
+					<td></td>					
+					<td>{{service.name}}</td>
+					
+				</tr>
+				{% endfor %}
+				
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+
+
+{% endblock %} 
